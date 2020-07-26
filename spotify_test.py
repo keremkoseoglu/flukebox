@@ -1,22 +1,19 @@
 import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from flukebox.config import get_config, get_path
 
 def test1():
-    """
-    os.environ["SPOTIPY_CLIENT_ID"] = "3e026c6d36f64582bbe4b0398118520d"
-    os.environ["SPOTIPY_CLIENT_SECRET"] = "e16b1581dbfc4eb98fe4c3f1fdd463dc"
-    os.environ["SPOTIPY_REDIRECT_URI"] = "http://www.keremkoseoglu.com"
-
-    scope = "user-library-read"
-    """
+    config = get_config()
+    fpath = get_path()
+    cache_path = os.path.join(fpath["data_path"], config["api"]["spotify"]["cache_file"])
 
     oauth = SpotifyOAuth(
-        client_id="3e026c6d36f64582bbe4b0398118520d",
-        client_secret="e16b1581dbfc4eb98fe4c3f1fdd463dc",
-        redirect_uri="http://www.keremkoseoglu.com",
+        client_id=config["api"]["spotify"]["client_id"],
+        client_secret=config["api"]["spotify"]["client_secret"],
+        redirect_uri=config["api"]["spotify"]["redirect_uri"],
         show_dialog=True,
-        cache_path="/Users/kerem/Downloads/tmp.txt",
+        cache_path=cache_path,
         scope="playlist-read-collaborative"
     )
 
