@@ -1,0 +1,183 @@
+{
+    "settings": {
+        "extensions": ["mp3", "m4a", "mp4"]
+    },
+    "paths": [
+        {
+            "name": "backing.real_book",
+            "type": "url",
+            "path": "https://www.youtube.com/watch?v=5xINc3rfbBg&list=PLES3BCUQLP6hBBIODciynJr7VAgXSbonF"
+        },
+        {
+            "name": "backing.quality_guitar",
+            "type": "url",
+            "path": "https://www.youtube.com/watch?v=em03BbZJpyE&list=PLC52A9D217EC478CF"
+        },
+        {
+            "name": "backing.jazz",
+            "type": "url",
+            "path": "https://www.youtube.com/watch?v=WAbMcq7bmA8&list=PLUExMPmFbP3oqsUXN0ukt4VUmfCEfBy4L"
+        },
+        {
+            "name": "banu.nardis",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/71oyGuX3P7LvHu2sxnziY0?si=iUkcRB0vQaaVd3DAqK5zQA"
+        },
+        {
+            "name": "flat.emrah",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/5lY4ACG7EsiFs5O73mQKgG?si=06IzkGjJQbGVeUymOd-YZQ"
+        },
+        {
+            "name": "flat.jj",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/2D8xR8Ls9PsnEhNeThot7r?si=z749EeiiRjqP6YV0I9t6LQ"
+        },
+        {
+            "name": "flat.own",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/3FfxrUj8nnHsQ5HCGeniyW?si=klQD-m_aRVKxuHi6guqmug",
+        },
+        {
+            "name": "jazzge.eren",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/4Hy2fXO87pX0RU6naTpRad?si=1fG43RcVQDyrJjA0eza6Mg"
+        },
+        {
+            "name": "jazzge.ozge",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/39dhnA1H9FBgxm0crZcfiH?si=0C4KV0xGTBW818pmRxM9nQ"
+        },
+        {
+            "name": "jozi.cesme",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/itunes/Jozi Levi Brazil Project/2011 - Cesme"
+        },
+        {
+            "name": "jozi.default",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/5v6vMy2i8jrUtwLAQtCqjq?si=_rlV3HoXSVWr2OAUpNeb8w"
+        },
+        {
+            "name": "jozi.donizetti",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/1YB69p4nr4JhREC3sE5TDu?si=ptTQzJvyQKeOJ_uRjV9KFQ"
+        },
+        {
+            "name": "jozi.ipek",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/bands/jozi levi brazil project/Media/Audio/ipek"
+        },
+        {
+            "name": "jozi.kabatas",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/itunes/Jozi Levi Brazil Project/2019 - Prova"
+        },
+        {
+            "name": "jozi.kenan",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/itunes/Kenan Doğulu/Unknown Album"
+        },
+        {
+            "name": "jozi.kibris",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/6ETO1nOtAJQpnQmSCfnGwz?si=Kct-MyJ0RbCU4ieQ5RMZkw"
+        },
+        {
+            "name": "jozi.luna",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/1pQigs5Ny7N4fd3DGm0KLo?si=O4nHdXpuTeq_zcKjIaw12g"
+        },
+        {
+            "name": "jozi.old",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/4wMgqG811XiHiGvCRPFgRm?si=r8p1jNPoQOuGZBpJIkts-g"
+        },
+        {
+            "name": "jozi.salih",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/bands/jozi levi brazil project/Media/Audio/erkek repertuar"
+        },
+        {
+            "name": "jozi.sishane",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/itunes/Jozi Levi Brazil Project/2017 - Sishane"
+        },
+        {
+            "name": "jozi.soho",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/itunes/Jozi Levi Brazil Project/2018 - Soho"
+        },
+        {
+            "name": "kerem.bass",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/5qnA1Rqpm5XT5EtRUwfEZG?si=18texmDXQ5Km6ZZceIrISA"
+        },
+        {
+            "name": "kiler",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/Life/Psm/audio"
+        },
+        {
+            "name": "pinyata",
+            "type": "directory",
+            "path": "/Users/kerem/Documents/music/bands/Pinyata/audio"
+        },
+        {
+            "name": "utku.2018",
+            "type": "url",
+            "path": "https://open.spotify.com/playlist/4LvKfarGwOqQZbfnlwBP95?si=KYyeplPRSZqDbLI-WkCCBA"
+        }
+
+    ],
+    "playlists": [
+        {
+            "name": "backing",
+            "paths": ["backing.real_book", "backing.quality_guitar", "backing.jazz"]
+        },
+        {
+            "name": "flat",
+            "paths": ["flat.emrah", "flat.jj", "flat.own"],
+            "playlists": []
+        },
+        {
+            "name": "jazzge",
+            "paths": ["jazzge.eren", "jazzge.ozge"],
+            "playlists": []
+        },
+        {
+            "name": "jozi",
+            "paths": [
+                "jozi.cesme",
+                "jozi.default",
+                "jozi.donizetti",
+                "jozi.ipek",
+                "jozi.kabatas",
+                "jozi.kenan",
+                "jozi.kibris",
+                "jozi.luna",
+                "jozi.old",
+                "jozi.salih",
+                "jozi.sishane",
+                "jozi.soho"
+            ],
+            "playlists": []
+        },
+        {
+            "name": "kerem",
+            "paths": ["banu.nardis", "kerem.bass", "utku.2018"],
+            "playlists": ["backing", "flat", "jazzge", "jozi", "pinyata"]
+        },
+        {
+            "name": "kiler",
+            "paths": ["kiler"],
+            "playlists": []
+        },
+        {
+            "name": "pinyata",
+            "paths": ["pinyata"],
+            "playlists": []
+        }
+    ]
+    
+}
