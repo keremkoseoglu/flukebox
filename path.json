@@ -1,4 +1,5 @@
 {
     "data_path": "/Users/kerem/Documents/etc/config/flukebox",
-    "config_file": "config.json"
+    "config_file": "config.json",
+    "song_file": "song.json"
 }
