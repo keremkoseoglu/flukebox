@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>FlukeBox</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body class="text-center" style="background-color: #000000;">
+        <div class="container h-100 justify-content-center">
+            <div class="jumbotron my-auto" style="background-color: #000000;">
+                <h1 style="color: #aaaaaa;">FlukeBox Player</h1>
+                <p id="currentSong" class="lead text-muted">Click next to start!</p>
+                <a href="#" class="btn btn-primary my-2" onclick="prev();">Prev</a>
+                <a href="#" class="btn btn-primary my-2" onclick="randomSong();">Random</a>
+                <a href="#" class="btn btn-primary my-2" onclick="next();">Next</a>
+                <hr>
+                <p class="small" style="color: #ffffff;">
+                    <span id="arrow_0">→</span> <a href="#" onClick="setSong(0);">Ponteio</a><br>
+                    <span id="arrow_1">→</span> <a href="#" onClick="setSong(1);">Valerie (feat. Amy Winehouse) - Version Revisited</a><br>
+                    <span id="arrow_2">→</span> <a href="#" onClick="setSong(2);">Black Narcissus chord progression - Backing Track (no piano)</a><br>
+                </p>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var playList = [
+                {
+                    "name": "Ponteio",
+                    "url": "/Users/kerem/Documents/music/itunes/Jozi Levi Brazil Project/2011 - Cesme/Ponteio.mp3"
+                },
+                {
+                    "name": "Valerie (feat. Amy Winehouse) - Version Revisited",
+                    "url": "https://open.spotify.com/track/6kopmMZiyLmw7h66uXcXR7"
+                },
+                {
+                    "name": "Black Narcissus chord progression - Backing Track (no piano)",
+                    "url": "https://www.youtube.com/watch?v=yskdknyVsLM"
+                }
+            ];
+
+            var index = -1;
+            var playerWindow = null;
+
+            for (i = 0; i < playList.length; i++) {
+                setArrowVisibility(i, "hidden");
+            }
+
+            function prev () {
+                if (index == 0) {return;}
+                setArrowVisibility(index, "hidden");
+                index -= 1;
+                refreshPlayerWindow();
+            }
+
+            function randomSong () {
+                randomIndex = Math.floor(Math.random() * playList.length);
+                setSong(randomIndex);
+            }
+
+            function next () {
+                if (index == playList.length-1) {return;}
+                setArrowVisibility(index, "hidden");
+                index += 1;
+                refreshPlayerWindow();
+            }
+
+            function setSong(newIndex) {
+                setArrowVisibility(index, "hidden");
+                index = newIndex;
+                refreshPlayerWindow();
+            }
+
+            function refreshPlayerWindow () {
+                setArrowVisibility(index, "visible");
+                song = playList[index];
+                if (playerWindow == null) {
+                    playerWindow = window.open(song.url, "playerWindow", "height=1000, width=400");  
+                }
+                else {
+                    playerWindow.location = song.url;
+                }
+                document.getElementById("currentSong").innerText = song.name;
+            }
+
+            function setArrowVisibility (index, visibility) {
+                var arrow = "arrow_" + index;
+                var arrowObj = document.getElementById(arrow)
+                if (arrowObj) {arrowObj.style.visibility = visibility;}
+            }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    </body>
+</html>
