@@ -135,3 +135,10 @@ The program interface is very simple and intuitive.
 - **Edit** lets you edit your config.json file
 - **Crawl** crawls through Spotify / YouTube / local directories and builds a song list, which can be seen in **config/song.json** if needed.
 - **Play** opens the player in your browser, which will play the files of the selected playlist.
+
+## Command line arguments
+```
+main.py playlist=kerem
+```
+
+This will start the program, generate the player for the playlist called "kerem", and make it quit without showing the GUI.
