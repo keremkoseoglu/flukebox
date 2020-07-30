@@ -1,4 +1,5 @@
 """ Entry point """
+import os
 from PyQt5.Qt import QApplication
 from flukebox.gui.prime import Prime
 
