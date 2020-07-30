@@ -7,6 +7,8 @@ from flukebox.host.song import Song
 from flukebox.config import get_config
 
 class Writer:
+    _DANGEROUS_CHARS = ["'", "\"", "(", ")", ";", "<", ">"]
+
     """ Write class """
     def __init__(self):
         self._songs = []
@@ -25,6 +27,13 @@ class Writer:
         self._write()
         self._open_player()
 
+    @staticmethod
+    def _purify_song_name(name: str) -> str:
+        output = name
+        for char in Writer._DANGEROUS_CHARS:
+            output = output.replace(char, " ")
+        return output
+
     def _build_songlist_code(self):
         self._songlist_code = ""
         song_index = -1
@@ -33,7 +42,7 @@ class Writer:
             song_index_txt = str(song_index)
             self._songlist_code += '<span id="arrow_' + song_index_txt + '">→</span>' 
             self._songlist_code += '<a href="#" onClick="setSong(' + song_index_txt + ');">'
-            self._songlist_code += html.escape(song.name) + '</a><br>'
+            self._songlist_code += Writer._purify_song_name(song.name) + '</a><br>'
 
     def _build_playlist_code(self):
         self._playlist_code = ""
@@ -43,7 +52,7 @@ class Writer:
             if song_index > 0:
                 self._playlist_code += ', '
             self._playlist_code += '{'
-            self._playlist_code += '"name": "' + html.escape(song.name) + '", '
+            self._playlist_code += '"name": "' + Writer._purify_song_name(song.name) + '", '
             self._playlist_code += '"url": "' + song.url + '"'
             self._playlist_code += '}'
 
