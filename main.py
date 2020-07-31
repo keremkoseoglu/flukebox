@@ -19,7 +19,7 @@ def main():
             Producer().produce_with_playlist(arg_split[1])
             return
         if arg_split[0] == "seek":
-            Seeker().seek_and_produce(arg.split[1])
+            Seeker().seek_and_produce(arg_split[1])
             return
 
     APP = QApplication([])
