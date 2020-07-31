@@ -137,8 +137,28 @@ The program interface is very simple and intuitive.
 - **Play** opens the player in your browser, which will play the files of the selected playlist.
 
 ## Command line arguments
+
+### Generate for a playlist
+
 ```
 main.py playlist=kerem
 ```
 
-This will start the program, generate the player for the playlist called "kerem", and make it quit without showing the GUI.
+This will start the program, generate the player for the playlist called "kerem" and quit.
+
+### Generate seeking songs
+
+```
+main.py seek=/folder/seek.json
+```
+
+This will start the program, seek the songs given in the JSON file, generate the player quit.
+
+Provided file (seek.json) should be in the following intuitive format:
+
+```
+{
+    "seek_songs": ["Mercedes Benz", "Walking Myself", "Dummy Song"],
+    "seek_in_playlists": ["pinyata"]
+}
+```

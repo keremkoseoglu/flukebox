@@ -4,7 +4,7 @@ import sys
 from PyQt5.Qt import QApplication
 from flukebox.gui.prime import Prime
 from flukebox.production.producer import Producer
-
+from flukebox.production.seeker import Seeker
 
 def main():
     arg_pos = -1
@@ -17,6 +17,9 @@ def main():
             continue
         if arg_split[0] == "playlist":
             Producer().produce_with_playlist(arg_split[1])
+            return
+        if arg_split[0] == "seek":
+            Seeker().seek_and_produce(arg.split[1])
             return
 
     APP = QApplication([])
