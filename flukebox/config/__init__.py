@@ -21,6 +21,14 @@ def get_path() -> dict:
         _read_path()
     return _PATH
 
+def get_crawled_songs() -> {}:
+    """ Reads the song file and returns contents """
+    output = {}
+    song_path = path.join(_PATH["data_path"], _PATH["song_file"])
+    with open(song_path) as song_file:
+        output = json.load(song_file)
+    return output
+
 def _read_config():
     global _CONFIG, _PATH
     _CONFIG = {}

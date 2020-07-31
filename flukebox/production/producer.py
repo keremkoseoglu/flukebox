@@ -1,7 +1,7 @@
 """ Producer module """
 from os import path
 import json
-from flukebox.config import get_config, get_path
+from flukebox.config import get_config, get_path, get_crawled_songs
 from flukebox.production.writer import Writer
 from flukebox.host.song import Song
 
@@ -16,15 +16,9 @@ class Producer:
     def produce_with_playlist(self, playlist_name: str):
         """ Produces output for the given playlist """
         self._songs = []
-        self._read_songs_json()
+        self._songs_json = get_crawled_songs()
         self._append_playlist_to_songs(playlist_name)
         Writer().execute(self._songs)
-
-    def _read_songs_json(self):
-        self._songs_json = {}
-        song_path = path.join(self._path["data_path"], self._path["song_file"])
-        with open(song_path) as song_file:
-            self._songs_json = json.load(song_file)
 
     def _append_playlist_to_songs(self, playlist_name: str):
         for playlist in self._config["playlists"]:
