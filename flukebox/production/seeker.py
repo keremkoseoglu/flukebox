@@ -61,12 +61,17 @@ class ScoreCalculator:
         self._candidate_name = candidate_name.lower()
         self._score = 0
         self._eval_exact()
+        self._eval_contains()
         self._eval_words()
         return self._score
 
     def _eval_exact(self):
         if self._song_name == self._candidate_name:
             self._score += 10
+
+    def _eval_contains(self):
+        if self._song_name in self._candidate_name:
+            self._score += 5
 
     def _eval_words(self):
         song_split = self._song_name.split(" ")
