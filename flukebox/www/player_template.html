@@ -7,10 +7,12 @@
         <div class="container h-100 justify-content-center">
             <div class="jumbotron my-auto" style="background-color: #000000;">
                 <h1 style="color: #aaaaaa;">FlukeBox Player</h1>
-                <p id="currentSong" class="lead text-muted">Click next to start!</p>
+                <p id="currentSong" class="text-muted">Click next to start!</p>
                 <a href="#" class="btn btn-primary my-2" onclick="prev();">Prev</a>
                 <a href="#" class="btn btn-primary my-2" onclick="randomSong();">Random</a>
                 <a href="#" class="btn btn-primary my-2" onclick="next();">Next</a>
+                &nbsp; &nbsp;
+                <a href="#" class="btn btn-success my-2" onclick="refreshPlayerWindow();">Play</a>
                 <hr>
                 <p class="small" style="color: #ffffff;">
                     {{SONGLIST}}
@@ -32,7 +34,7 @@
                 if (index == 0) {return;}
                 setArrowVisibility(index, "hidden");
                 index -= 1;
-                refreshPlayerWindow();
+                refreshSongName();
             }
 
             function randomSong () {
@@ -44,25 +46,30 @@
                 if (index == playList.length-1) {return;}
                 setArrowVisibility(index, "hidden");
                 index += 1;
-                refreshPlayerWindow();
+                refreshSongName();
             }
 
-            function setSong(newIndex) {
+            function setSong (newIndex) {
                 setArrowVisibility(index, "hidden");
                 index = newIndex;
-                refreshPlayerWindow();
+                refreshSongName();
+            }
+
+            function refreshSongName () {
+                setArrowVisibility(index, "visible");
+                song = playList[index];
+                var show_name = song.name;
+                if (show_name.length > 62) {show_name = show_name.substring(0, 62) + "..."}
+                document.getElementById("currentSong").innerText = show_name;
             }
 
             function refreshPlayerWindow () {
-                setArrowVisibility(index, "visible");
-                song = playList[index];
                 if (playerWindow == null) {
                     playerWindow = window.open(song.url, "playerWindow", "height=1000, width=400");  
                 }
                 else {
                     playerWindow.location = song.url;
                 }
-                document.getElementById("currentSong").innerText = song.name;
             }
 
             function setArrowVisibility (index, visibility) {
@@ -75,6 +82,5 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
     </body>
 </html>
