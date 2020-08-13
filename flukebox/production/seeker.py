@@ -1,5 +1,6 @@
 """ Seeker module """
 import json
+from pathlib import Path
 from flukebox.production.writer import Writer
 from flukebox.host.song import Song
 from flukebox.config import get_crawled_songs, get_config
@@ -100,7 +101,8 @@ class Seeker:
         self._init_song_contests()
         self._seek()
         self._build_output()
-        Writer().execute(self._state.output)
+        playlist_name = Path(file_path).name.split(".")[0]
+        Writer().execute(playlist_name, self._state.output)
 
     def _read_seek_file(self):
         with open(self._state.file_path) as seek_file:

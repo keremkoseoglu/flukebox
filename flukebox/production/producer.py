@@ -18,7 +18,7 @@ class Producer:
         self._songs = []
         self._songs_json = get_crawled_songs()
         self._append_playlist_to_songs(playlist_name)
-        Writer().execute(self._songs)
+        Writer().execute(playlist_name, self._songs)
 
     def _append_playlist_to_songs(self, playlist_name: str):
         for playlist in self._config["playlists"]:
