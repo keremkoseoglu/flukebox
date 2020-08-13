@@ -12,13 +12,15 @@ class Writer:
     """ Write class """
     def __init__(self):
         self._songs = []
+        self._playlist_name = ""
         self._songlist_code = ""
         self._playlist_code = ""
         self._output = ""
         self._config = get_config()
 
-    def execute(self, songs: List[Song]):
+    def execute(self, playlist_name: str, songs: List[Song]):
         """ Executes the write operation for passed songs """
+        self._playlist_name = playlist_name
         self._songs = songs
 
         self._build_songlist_code()
@@ -61,6 +63,7 @@ class Writer:
         tmp_path = path.join(os.getcwd(), "flukebox", "www", "player_template.html")
         with open(tmp_path) as tmp_file:
             self._output = tmp_file.read()
+        self._output = self._output.replace("{{PLAYLIST_NAME}}", self._playlist_name)
         self._output = self._output.replace("{{SONGLIST}}", self._songlist_code)
         self._output = self._output.replace("{{PLAYLIST}}", self._playlist_code)
 
