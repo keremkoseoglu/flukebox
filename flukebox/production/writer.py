@@ -43,7 +43,7 @@ class Writer:
             song_index += 1
             song_index_txt = str(song_index)
             self._songlist_code += '<span id="arrow_' + song_index_txt + '">→</span>' 
-            self._songlist_code += '<a href="#" onClick="setSong(' + song_index_txt + ');">'
+            self._songlist_code += '<a href="#" onClick="setSongAndPlay(' + song_index_txt + ');">'
             self._songlist_code += Writer._purify_song_name(song.name) + '</a><br>'
 
     def _build_playlist_code(self):
