@@ -73,7 +73,10 @@
 
             function refreshPlayerWindow () {
                 if (playerWindow == null) {
-                    playerWindow = window.open(song.url, "playerWindow", "height=1000, width=400");  
+                    height = screen.height
+                    width = screen.width / 2
+                    suffix = "height=" + height + ", width=" + width
+                    playerWindow = window.open(song.url, "playerWindow", suffix);  
                 }
                 else {
                     playerWindow.location = song.url;
