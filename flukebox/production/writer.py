@@ -66,6 +66,7 @@ class Writer:
         self._output = self._output.replace("{{PLAYLIST_NAME}}", self._playlist_name)
         self._output = self._output.replace("{{SONGLIST}}", self._songlist_code)
         self._output = self._output.replace("{{PLAYLIST}}", self._playlist_code)
+        self._output = self._output.replace("{{SONGCOUNT}}", str(len(self._songs)))
 
     def _write(self):
         with open(self._config["settings"]["output_file"], "w") as output_file:
