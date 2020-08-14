@@ -42,9 +42,9 @@ class Writer:
         for song in self._songs:
             song_index += 1
             song_index_txt = str(song_index)
-            self._songlist_code += '<span id="arrow_' + song_index_txt + '">→</span>' 
-            self._songlist_code += '<a href="#" onClick="setSongAndPlay(' + song_index_txt + ');">'
-            self._songlist_code += Writer._purify_song_name(song.name) + '</a><br>'
+            self._songlist_code += '<nobr>· <a href="#" onClick="setSongAndPlay(' + song_index_txt + ');">'
+            self._songlist_code += Writer._purify_song_name(song.name) + '</a>'
+            self._songlist_code += '<span id="arrow_' + song_index_txt + '"><big> ⭐️</big></span></nobr> &nbsp;&nbsp;'
 
     def _build_playlist_code(self):
         self._playlist_code = ""
