@@ -74,3 +74,4 @@ class Prime(QWidget):
     def _generate_clicked(self, event): # pylint: disable=W0613
         selected_playlist = self._config["playlists"][self._selected_playlist_index]["name"]
         self._producer.produce_with_playlist(selected_playlist)
+        self.close()
