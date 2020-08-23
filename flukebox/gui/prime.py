@@ -5,6 +5,7 @@ from PyQt5.Qt import QWidget, QLabel, QComboBox, QHBoxLayout, QVBoxLayout
 from flukebox.config import get_config, get_path, reload_config
 from flukebox.production.producer import Producer
 from flukebox.host.crawler import Crawler
+from flukebox.host.local import NewFileDetector
 
 
 class Prime(QWidget):
@@ -54,7 +55,10 @@ class Prime(QWidget):
         reload_button.setText("Reload")
         reload_button.mousePressEvent = self._reload_clicked
 
-        self._crawl_button.setText("Crawl")
+        crawl_text = "Crawl"
+        if NewFileDetector().are_there_new_files():
+            crawl_text += "!"
+        self._crawl_button.setText(crawl_text)
         self._crawl_button.mousePressEvent = self._crawl_clicked
 
         gen_button = QLabel(self)
