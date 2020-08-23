@@ -29,6 +29,12 @@ def get_crawled_songs() -> {}:
         output = json.load(song_file)
     return output
 
+def reload_config() -> dict:
+    """ Reloads config from the disk """
+    global _CONFIG
+    _CONFIG = {}
+    return get_config()
+
 def _read_config():
     global _CONFIG, _PATH
     _CONFIG = {}
