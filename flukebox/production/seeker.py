@@ -30,7 +30,7 @@ class SongContest:
                 output = candidate.song
                 winner_score = candidate.score
         if output is None:
-            output = Song(name=self.name, url="http://www.blank.org")
+            output = Song(name=self.name + " (?)", url="http://www.blank.org")
         return output
 
     def has_url_candidate(self, name: str) -> bool:
