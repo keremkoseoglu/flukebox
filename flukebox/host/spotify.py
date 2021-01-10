@@ -30,10 +30,14 @@ class Spotify(AbstractHost):
         assert path.host == "spotify"
         output = []
         playlist_id = path.url.split(":")[2]
-        spotify_songs = self._spotipy.playlist_tracks(playlist_id)
-        for item in spotify_songs["items"]:
-            if len(item["track"]["external_urls"]) <= 0:
-                continue
-            song = Song(item["track"]["name"], item["track"]["external_urls"]["spotify"])
-            output.append(song)
-        return output
+        offset = 0
+        while True:
+            spotify_songs = self._spotipy.playlist_tracks(playlist_id, offset=offset)
+            for item in spotify_songs["items"]:
+                if len(item["track"]["external_urls"]) <= 0:
+                    continue
+                song = Song(item["track"]["name"], item["track"]["external_urls"]["spotify"])
+                output.append(song)
+            if spotify_songs["next"] is None:
+                return output
+            offset += spotify_songs["limit"]
