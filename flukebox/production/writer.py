@@ -61,7 +61,7 @@ class Writer:
 
     def _build_output(self):
         self._output = ""
-        tmp_path = path.join(os.getcwd(), "flukebox", "www", "player_template.html")
+        tmp_path = path.join(os.getcwd(), "flukebox", "www", "player_template_v2.html")
         with open(tmp_path) as tmp_file:
             self._output = tmp_file.read()
         self._output = self._output.replace("{{PLAYLIST_NAME}}", self._playlist_name)
