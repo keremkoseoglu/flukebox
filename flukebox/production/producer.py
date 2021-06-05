@@ -36,7 +36,11 @@ class Producer:
             if path["path"] == path_name:
                 for song_dict in path["songs"]:
                     if not self._is_song_appended(song_dict["name"]):
-                        song = Song(song_dict["name"], song_dict["url"])
+                        if "icon_url" in song_dict:
+                            icon = song_dict["icon_url"]
+                        else:
+                            icon = ""
+                        song = Song(song_dict["name"], song_dict["url"], icon)
                         self._songs.append(song)
                 return
 

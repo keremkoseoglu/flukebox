@@ -34,6 +34,6 @@ class Crawler:
             path_obj = Path(path_config["name"], path_config["host"], path_config["url"])
             songs = host.get_songs_in_path(path_obj)
             for song in songs:
-                song_json = {"name": song.name, "url": song.url}
+                song_json = {"name": song.name, "url": song.url, "icon_url": song.icon_url}
                 path_output["songs"].append(song_json)
             self._result["path_songs"].append(path_output)

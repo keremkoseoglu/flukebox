@@ -16,13 +16,14 @@ class LocalHost(AbstractHost):
         assert path.host == "local"
         config = get_config()
         output = []
+        local_icon = config["hosts"]["local"]["icon"]
         all_files_in_path = [f for f in listdir(path.url) if isfile(join(path.url, f))]
         for candidate in all_files_in_path:
             file_split = splitext(candidate)
             extension = file_split[1].replace(".", "")
             if extension in config["hosts"]["local"]["extensions"]:
                 full_path = join(path.url, candidate)
-                song = Song(file_split[0], full_path)
+                song = Song(file_split[0], full_path, local_icon)
                 output.append(song)
         return output
 
