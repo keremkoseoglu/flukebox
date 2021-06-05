@@ -71,7 +71,7 @@
                 song = playList[index];
                 var show_name = song.name;
                 if (show_name.length > 62) {show_name = show_name.substring(0, 62) + "..."}
-                document.getElementById("currentSong").innerText = show_name;
+                document.getElementById("currentSong").innerHTML = "<img src=" + song.icon + "> " + show_name + "</img>";
                 removeRandomSong(song.name);
             }
 

@@ -56,7 +56,8 @@ class Writer:
                 self._playlist_code += ', '
             self._playlist_code += '{'
             self._playlist_code += '"name": "' + Writer._purify_song_name(song.name) + '", '
-            self._playlist_code += '"url": "' + song.url + '"'
+            self._playlist_code += '"url": "' + song.url + '", '
+            self._playlist_code += '"icon": "' + song.icon_url + '"'
             self._playlist_code += '}'
 
     def _build_output(self):
