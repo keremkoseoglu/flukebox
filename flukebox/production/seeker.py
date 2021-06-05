@@ -139,7 +139,11 @@ class Seeker:
                 score = self._score_calculator.calculate(contest.name, song["name"])
                 if score <= 0:
                     continue
-                candidate_song = Song(name=song["name"], url=song["url"])
+                if "icon_url" in song:
+                    icon = song["icon_url"]
+                else:
+                    icon = ""
+                candidate_song = Song(name=song["name"], url=song["url"], icon_url=icon)
                 candidate = UrlCandidate(candidate_song, score)
                 contest.url_candidates.append(candidate)
 

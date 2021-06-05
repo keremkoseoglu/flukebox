@@ -11,6 +11,7 @@ class YouTube(AbstractHost):
     def __init__(self):
         self._config = get_config()
         self._key = self._config["hosts"]["youtube"]["key"]
+        self._icon = self._config["hosts"]["youtube"]["icon"]
 
     def get_songs_in_path(self, path: Path) -> List[Song]:
         """ Reads path and returns a list of URL's of songs within """
@@ -38,7 +39,7 @@ class YouTube(AbstractHost):
             for item in response["items"]:
                 song_title = item["snippet"]["title"]
                 song_url = "https://www.youtube.com/watch?v=" + item["contentDetails"]["videoId"]
-                song = Song(song_title, song_url)
+                song = Song(song_title, song_url, self._icon)
                 output.append(song)
             if "nextPageToken" not in response or response["nextPageToken"] == "":
                 has_next_page = False

@@ -42,7 +42,8 @@ class Writer:
         for song in self._songs:
             song_index += 1
             song_index_txt = str(song_index)
-            self._songlist_code += '<nobr>· <a href="#" onClick="setSongAndPlay(' + song_index_txt + ');">'
+            icode = '<img src="' + song.icon_url + '">'
+            self._songlist_code += '<nobr>' + icode + ' <a href="#" onClick="setSongAndPlay(' + song_index_txt + ');">'
             self._songlist_code += Writer._purify_song_name(song.name) + '</a>'
             self._songlist_code += '<span id="arrow_' + song_index_txt + '"><big> ⭐️</big></span></nobr> &nbsp;&nbsp;'
 
