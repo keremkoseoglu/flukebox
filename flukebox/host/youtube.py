@@ -36,6 +36,10 @@ class YouTube(AbstractHost):
             request = requests.get(youtube_url)
             response = request.json()
 
+            if "items" not in response:
+                has_next_page = False
+                continue
+
             for item in response["items"]:
                 song_title = item["snippet"]["title"]
                 song_url = "https://www.youtube.com/watch?v=" + item["contentDetails"]["videoId"]

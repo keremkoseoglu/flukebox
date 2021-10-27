@@ -70,7 +70,7 @@
                 setArrowVisibility(index, "visible");
                 song = playList[index];
                 var show_name = song.name;
-                if (show_name.length > 62) {show_name = show_name.substring(0, 62) + "..."}
+                if (show_name.length > 58) {show_name = show_name.substring(0, 58) + "..."}
                 document.getElementById("currentSong").innerHTML = "<img src=" + song.icon + "> " + show_name + "</img>";
                 removeRandomSong(song.name);
             }
