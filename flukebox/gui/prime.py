@@ -2,6 +2,7 @@
 from os import path
 import subprocess
 from PyQt5.Qt import QWidget, QLabel, QComboBox, QHBoxLayout, QVBoxLayout
+from incubus import IncubusFactory
 from flukebox.config import get_config, get_path, reload_config
 from flukebox.production.producer import Producer
 from flukebox.host.crawler import Crawler
@@ -13,6 +14,10 @@ class Prime(QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self._incubus = IncubusFactory.get_instance()
+        self._incubus.start(5)
+
         self._crawler = Crawler()
         self._producer = Producer()
         self._config = get_config()
@@ -73,22 +78,26 @@ class Prime(QWidget):
         return btn_layout
 
     def _playlist_selected(self, i):
+        self._incubus.user_event()
         self._selected_playlist_index = i
 
     def _edit_clicked(self, event): # pylint: disable=W0613, R0201
+        self._incubus.user_event()
         data_path = path.join(self._path["data_path"], self._path["config_file"])
         subprocess.call(["open", data_path])
 
     def _reload_clicked(self, event): # pylint: disable=W0613, R0201
+        self._incubus.user_event()
         self._config = reload_config()
         self._fill_playlist_combo()
 
     def _crawl_clicked(self, event): # pylint: disable=W0613, R0201
+        self._incubus.user_event()
         self._crawl_button.setText("...")
         self._crawler.crawl()
         self._crawl_button.setText("Crawl")
 
     def _generate_clicked(self, event): # pylint: disable=W0613
+        self._incubus.user_event()
         selected_playlist = self._config["playlists"][self._selected_playlist_index]["name"]
         self._producer.produce_with_playlist(selected_playlist)
-        self.close()
