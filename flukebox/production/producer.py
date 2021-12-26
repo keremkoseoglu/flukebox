@@ -28,7 +28,7 @@ class Producer:
                         self._append_path_to_songs(sub_path, no_local=no_local)
                 if "playlists" in playlist:
                     for sub_playlist in playlist["playlists"]:
-                        self._append_playlist_to_songs(sub_playlist)
+                        self._append_playlist_to_songs(sub_playlist, no_local=no_local)
                 return
 
     def _append_path_to_songs(self, path_name: str, no_local: bool = False):

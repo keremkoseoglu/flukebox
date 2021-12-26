@@ -9,7 +9,6 @@ from flukebox.production.seeker import Seeker
 def main():
     # Skippable hosts
     no_local = False
-    arg_pos = -1
     for arg in sys.argv:
         if arg == "no_local":
             no_local = True
