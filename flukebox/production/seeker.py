@@ -127,7 +127,7 @@ class Seeker:
                     self._seek_path(contest, path)
             if "playlists" in playlist:
                 for sub_playlist in playlist["playlists"]:
-                    _seek_playlist(contest, sub_playlist)
+                    self._seek_playlist(contest, sub_playlist)
 
     def _seek_path(self, contest: SongContest, seekable_path: str):
         for path_song in self._state.crawled_songs["path_songs"]:
