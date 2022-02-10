@@ -58,13 +58,30 @@ class ScoreCalculator:
 
     def calculate(self, song_name: str, candidate_name: str) -> int:
         """ Calculates score """
-        self._song_name = song_name.lower()
-        self._candidate_name = candidate_name.lower()
+        self._song_name = ScoreCalculator._purify_name(song_name)
+        self._candidate_name = ScoreCalculator._purify_name(candidate_name)
         self._score = 0
         self._eval_exact()
         self._eval_contains()
         self._eval_words()
         return self._score
+
+    @staticmethod
+    def _purify_name(name: str) -> str:
+        result = name.lower()
+        result = result.replace("ı", "i")
+        result = result.replace("ğ", "g")
+        result = result.replace("ü", "u")
+        result = result.replace("ş", "s")
+        result = result.replace("ö", "o")
+        result = result.replace("ç", "c")
+        result = result.replace("Ğ", "G")
+        result = result.replace("Ü", "U")
+        result = result.replace("Ş", "S")
+        result = result.replace("İ", "I")
+        result = result.replace("Ö", "O")
+        result = result.replace("Ç", "C")
+        return result
 
     def _eval_exact(self):
         if self._song_name == self._candidate_name:
