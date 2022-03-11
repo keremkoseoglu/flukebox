@@ -1,7 +1,7 @@
 """ Entry point """
 import os
 import sys
-from PyQt5.Qt import QApplication
+from PyQt5.QtWidgets import QApplication
 from flukebox.gui.prime import Prime
 from flukebox.production.producer import Producer
 from flukebox.production.seeker import Seeker
