@@ -42,6 +42,14 @@ python3 -m venv venv
 
 - Create a secondary folder (presumably called config) to store configuration and cache files later on.
 
+- Go to flukebox/cpp folder and build cpp_toolkit.cpp; possibly by:
+```
+g++ -c -fPIC cpp_toolkit.cpp -o cpp_toolkit.o
+g++ -shared -o cpp_toolkit.so cpp_toolkit.o
+```
+
+- Replace the path in flukebox/cpp/__init__.py
+
 ## Configuration
 
 In the "config" folder, create a file called **config.json** in the following intuitive format, changing your values accordingly:
