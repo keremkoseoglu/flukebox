@@ -48,8 +48,6 @@ g++ -c -fPIC cpp_toolkit.cpp -o cpp_toolkit.o
 g++ -shared -o cpp_toolkit.so cpp_toolkit.o
 ```
 
-- Replace the path in flukebox/cpp/__init__.py
-
 ## Configuration
 
 In the "config" folder, create a file called **config.json** in the following intuitive format, changing your values accordingly:

@@ -2,9 +2,9 @@
 g++ -c -fPIC cpp_toolkit.cpp -o cpp_toolkit.o
 g++ -shared -o cpp_toolkit.so cpp_toolkit.o
 """
-
+from os import getcwd, path
 from ctypes import cdll
-lib = cdll.LoadLibrary("/Users/kerem/Dropbox/Mac/Documents/software/Kerem/Development/flukebox/flukebox/cpp/cpp_toolkit.so")
+lib = cdll.LoadLibrary(path.join(getcwd(), "flukebox", "cpp", "cpp_toolkit.so"))
 
 def purify_name(name: str) -> str:
     name2 = name.encode(encoding="utf-8", errors="ignore")
