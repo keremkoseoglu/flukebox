@@ -21,7 +21,7 @@ def get_path() -> dict:
         _read_path()
     return _PATH
 
-def get_crawled_songs() -> {}:
+def get_crawled_songs() -> dict:
     """ Reads the song file and returns contents """
     output = {}
     song_path = path.join(_PATH["data_path"], _PATH["song_file"])
