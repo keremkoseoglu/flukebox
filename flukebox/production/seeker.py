@@ -1,25 +1,32 @@
 """ Seeker module """
+from dataclasses import dataclass
 import json
 from pathlib import Path
+from typing import List
 from flukebox.production.writer import Writer
 from flukebox.host.song import Song
 from flukebox.config import get_crawled_songs, get_config
 from flukebox.cpp import purify_name
 
+@dataclass
 class UrlCandidate:
     """ A candidate URL for a song """
-    def __init__(self, song: Song=None, score: int=0):
-        if song is None:
-            self.song = Song()
-        else:
-            self.song = song
-        self.score = score
+    song: Song = None
+    score: int = 0
 
+    def __post_init__(self):
+        if self.song is None:
+            self.song = Song()
+
+@dataclass
 class SongContest:
     """ Song with candidate URL's """
-    def __init__(self, name: str = ""):
-        self.name = name
-        self.url_candidates = []
+    name: str = ""
+    url_candidates: List = None
+
+    def __post_init__(self):
+        if self.url_candidates is None:
+            self.url_candidates = []
 
     @property
     def winner(self) -> Song:
@@ -41,14 +48,24 @@ class SongContest:
                 return True
         return False
 
+@dataclass
 class SeekState:
     """ Seek state class """
-    def __init__(self, file_path: str = ""):
-        self.seek = {}
-        self.output = []
-        self.crawled_songs = []
-        self.song_contests = []
-        self.file_path = file_path
+    file_path: str = ""
+    seek: dict = None
+    output: List = None
+    crawled_songs: List = None
+    song_contests: List = None
+
+    def __post_init__(self):
+        if self.seek is None:
+            self.seek = {}
+        if self.output is None:
+            self.output = []
+        if self.crawled_songs is None:
+            self.crawled_songs = []
+        if self.song_contests is None:
+            self.song_contests = []
 
 class ScoreCalculator:
     """ Calculates score for song name similarity """
