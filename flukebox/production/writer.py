@@ -34,10 +34,10 @@ class Writer:
         for song in self._songs:
             song_index += 1
             song_index_txt = str(song_index)
-            icode = '<img src="' + song.icon_url + '">'
-            self._songlist_code += '<nobr>' + icode + ' <a href="#" onClick="setSongAndPlay(' + song_index_txt + ');">'
-            self._songlist_code += purify_song_name(song.name) + '</a>'
-            self._songlist_code += '<span id="arrow_' + song_index_txt + '"><big> ⭐️</big></span></nobr> &nbsp;&nbsp;'
+            icode = f'<img src="{song.icon_url}">'
+            self._songlist_code += f'<nobr>{icode} <a href="#" onClick="setSongAndPlay({song_index_txt});">'
+            self._songlist_code += f'{purify_song_name(song.name)}</a>'
+            self._songlist_code += f'<span id="arrow_{song_index_txt}"><big> ⭐️</big></span></nobr> &nbsp;&nbsp;'
 
     def _build_playlist_code(self):
         self._playlist_code = ""
@@ -47,9 +47,9 @@ class Writer:
             if song_index > 0:
                 self._playlist_code += ', '
             self._playlist_code += '{'
-            self._playlist_code += '"name": "' + purify_song_name(song.name) + '", '
-            self._playlist_code += '"url": "' + song.url + '", '
-            self._playlist_code += '"icon": "' + song.icon_url + '"'
+            self._playlist_code += f'"name": "{purify_song_name(song.name)}", '
+            self._playlist_code += f'"url": "{song.url}", '
+            self._playlist_code += f'"icon": "{song.icon_url}"'
             self._playlist_code += '}'
 
     def _build_output(self):
@@ -67,4 +67,4 @@ class Writer:
             output_file.write(self._output)
 
     def _open_player(self):
-        os.system("open " + self._config["settings"]["output_file"])
+        os.system(f'open {self._config["settings"]["output_file"]}')
