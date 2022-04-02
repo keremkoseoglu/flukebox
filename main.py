@@ -1,10 +1,10 @@
 """ Entry point """
 import os
 import sys
-from PyQt5.QtWidgets import QApplication
-from flukebox.gui.prime import Prime
+from flukebox.gui.prime import run_eel
 from flukebox.production.producer import Producer
 from flukebox.production.seeker import Seeker
+from flukebox import config
 
 def main():
     # Skippable hosts
@@ -30,9 +30,7 @@ def main():
             return
 
     # GUI
-    APP = QApplication([])
-    P = Prime()
-    os._exit(APP.exec_()) # pylint: disable=W0212
+    run_eel()
 
 if __name__ == "__main__":
     main()
