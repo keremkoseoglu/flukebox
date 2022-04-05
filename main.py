@@ -1,7 +1,7 @@
 """ Entry point """
 import os
 import sys
-from flukebox.gui.prime import run_eel
+from flukebox.gui.prime import start_gui
 from flukebox.production.producer import Producer
 from flukebox.production.seeker import Seeker
 from flukebox import config
@@ -30,7 +30,7 @@ def main():
             return
 
     # GUI
-    run_eel()
+    start_gui()
 
 if __name__ == "__main__":
     main()
