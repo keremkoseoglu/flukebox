@@ -1,22 +1,39 @@
 /* Events */
 
 function editClick() {
-  eel.edit_config();
+  $.ajax({
+    url: "/api/edit_config"
+  }).then(function(data) {});
 }
 
 function crawlClick() {
   disableButtons();
-  eel.crawl();
+  $.ajax({
+    url: "/api/crawl"
+  }).then(function(data) {
+    enableButtons();
+  });
 }
 
 function reloadClick() {
-  eel.reload();
+  clearPlaylists();
+
+  $.ajax({
+    url: "/api/playlists"
+  }).then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+        appendPlaylist(data[i]["name"]);
+    }
+  });
 }
 
 function playClick() {
   var cmbPlay = document.getElementById("cmbPlaylist");
   var playlist = cmbPlay.options[cmbPlay.selectedIndex].text;
-  eel.generate(playlist);
+  var api_url = "api/generate?playlist=" + playlist
+  $.ajax({
+    url: api_url
+  }).then(function(data) {});
 }
 
 /* Utilities */
@@ -25,7 +42,6 @@ function disableButtons() {
   setButtonsDisabled(true);
 }
 
-eel.expose(enableButtons);
 function enableButtons() {
   setButtonsDisabled(false);
 }
@@ -46,13 +62,11 @@ function setButtonsDisabled(disabled) {
   btnPlay.hidden = disabled;
 }
 
-eel.expose(clearPlaylists);
 function clearPlaylists() {
   var cmbPlay = document.getElementById("cmbPlaylist");
   cmbPlay.innerHTML = "";
 }
 
-eel.expose(appendPlaylist);
 function appendPlaylist(name) {
   var cmbPlay = document.getElementById("cmbPlaylist");
   var opt = document.createElement("option");
@@ -63,5 +77,6 @@ function appendPlaylist(name) {
 
 /* On load */
 
-document.addEventListener('contextmenu', event => event.preventDefault());
-eel.reload();
+$(document).ready(function() { 
+  reloadClick();
+});
