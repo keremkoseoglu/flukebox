@@ -3,10 +3,10 @@ from dataclasses import dataclass
 import json
 from pathlib import Path
 from typing import List
-from flukebox.production.writer import Writer
 from flukebox.host.song import Song
 from flukebox.config import get_crawled_songs, get_config
 from flukebox.cpp import purify_name
+from flukebox.gui import prime
 
 @dataclass
 class UrlCandidate:
@@ -120,7 +120,7 @@ class Seeker:
         self._seek()
         self._build_output()
         playlist_name = Path(file_path).name.split(".")[0]
-        Writer().execute(playlist_name, self._state.output)
+        prime.start_gui(seeker_playlist=playlist_name, seeker_songs=self._state.output)
 
     def _read_seek_file(self):
         with open(self._state.file_path) as seek_file:
