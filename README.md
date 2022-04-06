@@ -7,11 +7,7 @@ FlukeBox is a cross-streaming-service audio player. Here is how it works:
 
 So you can mix and match Spotify, YouTube or local files in FlukeBox Player.
 
-FlukeBox player:
 ![Screenshot](screenshot.png)
-
-FlukeBox player in action:
-![Screenshot](screenshot.gif)
 
 ## Registration
 
@@ -38,6 +34,14 @@ If you want to access Youtube playlists:
 
 ```
 python3 -m venv venv
+```
+
+- Install dependencies
+
+```
+. venv/bin/activate
+pip install flask
+pip install pywebview
 ```
 
 - Create a secondary folder (presumably called config) to store configuration and cache files later on.

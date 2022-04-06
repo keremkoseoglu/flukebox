@@ -23,7 +23,7 @@ def main():
         if len(arg_split) < 2:
             continue
         if arg_split[0] == "playlist":
-            Producer().produce_with_playlist(arg_split[1], no_local=no_local)
+            start_gui(playlist=arg_split[1], no_local=no_local)
             return
         if arg_split[0] == "seek":
             Seeker().seek_and_produce(arg_split[1])

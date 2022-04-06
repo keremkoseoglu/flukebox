@@ -1,8 +1,9 @@
 """ Producer module """
 from os import path
 import json
+from typing import List
 from flukebox.config import get_config, get_path, get_crawled_songs
-from flukebox.production.writer import Writer
+from flukebox.cpp import purify_song_name
 from flukebox.host.song import Song
 
 class Producer:
@@ -13,12 +14,18 @@ class Producer:
         self._songs = []
         self._songs_json = {}
 
-    def produce_with_playlist(self, playlist_name: str, no_local: bool = False):
-        """ Produces output for the given playlist """
+    def build_song_list(self, playlist_name: str, no_local: bool = False, purify: bool = False) -> List[Song]:
+        """ Builds song list """
         self._songs = []
         self._songs_json = get_crawled_songs()
+
+        if purify:
+            for path in self._songs_json["path_songs"]:
+                for song in path["songs"]:
+                    song["name"] = purify_song_name(song["name"])
+
         self._append_playlist_to_songs(playlist_name, no_local=no_local)
-        Writer().execute(playlist_name, self._songs)
+        return self._songs
 
     def _append_playlist_to_songs(self, playlist_name: str, no_local: bool = False):
         for playlist in self._config["playlists"]:

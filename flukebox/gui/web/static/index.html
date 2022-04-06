@@ -31,7 +31,7 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns" style="margin-top: 5%">
-        <h4>FlukeBox</h4>
+        <h4>Loader</h4>
         <div class="row">
             <div class="two columns"><b>Playlist</b></div>
             <div class="six columns">      
@@ -43,13 +43,34 @@
             <div class="two columns"><button id="btnEdit" onclick="editClick()">Edit</button></div>
             <div class="two columns"><button id="btnReload" onclick="reloadClick()">Reload</button></div>
             <div class="two columns"><button id="btnCrawl" onclick="crawlClick()">Crawl</button></div>
-            <div class="two columns"><button id="btnPlay" class="button-primary" onclick="playClick()">Play</button></div>
+            <div class="two columns"><button id="btnPlay" class="button-primary" onclick="loadClick()">Load</button></div>
         </div>
+    </div>
+
+    <div class="row">
+      <div class="twelve columns" style="margin-top: 5%">
+        <h4>Player</h4>
+
+        <div class="row">
+          <div class="two columns"><button id="btnEdit" onclick="prev()">Prev</button></div>
+          <div class="two columns"><button id="btnReload" onclick="randomSong()">Random</button></div>
+          <div class="two columns"><button id="btnCrawl" onclick="next()">Next</button></div>
+          <div class="two columns"><button id="btnPlay" class="button-primary" onclick="refreshPlayerWindow()">Play</button></div>
+          <div class="two columns"><button id="Stop" class="button-primary" onclick="clearPlayerWindow()">Stop</button></div>
+        </div>
+
+        <h5 id="currentSong">Click next to start!</h5>
+        <p id="songList" class="text-muted"></p>
+      </div>
+      
     </div>
   </div>
 
+
+
   <script src="/static/js/jquery-3.6.0.min.js"></script>
-  <script src="/static/js/index.js"></script>
+  <script src="/static/js/loader.js"></script>
+  <script src="/static/js/player.js"></script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
