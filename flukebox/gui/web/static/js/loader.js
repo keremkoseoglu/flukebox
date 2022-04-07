@@ -32,6 +32,7 @@ function loadStartPlaylist() {
   }).then(function(data) {
     if (data["start_playlist"] != "") {
       loadPlaylist(data["start_playlist"], data["no_local"]);
+      $("#cmbPlaylist").val(data["start_playlist"]);
     }
   });
 }
