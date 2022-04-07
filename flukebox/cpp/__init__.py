@@ -7,11 +7,13 @@ from ctypes import cdll
 lib = cdll.LoadLibrary(path.join(getcwd(), "flukebox", "cpp", "cpp_toolkit.so"))
 
 def purify_name(name: str) -> str:
+    """ Purifies name from weird characters """
     name2 = name.encode(encoding="utf-8", errors="ignore")
     lib.purify_name(name2)
     return name2.decode(encoding="utf-8", errors="ignore")[:len(name)]
 
 def purify_song_name(name: str) -> str:
+    """ Purifies song name from weird characters """
     name2 = name.encode(encoding="utf-8", errors="ignore")
     lib.purify_song_name(name2)
     return name2.decode(encoding="utf-8", errors="ignore")[:len(name)]

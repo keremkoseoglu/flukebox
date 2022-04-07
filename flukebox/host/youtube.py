@@ -4,7 +4,7 @@ import requests
 from flukebox.host.abstract_host import AbstractHost
 from flukebox.host.path import Path
 from flukebox.host.song import Song
-from flukebox.config import get_config, get_path
+from flukebox.config import get_config
 
 class YouTube(AbstractHost):
     """ YouTube class """
@@ -19,10 +19,11 @@ class YouTube(AbstractHost):
         output = []
         url_split = path.url.split("=")
         list_id = url_split[len(url_split)-1]
-        
+
         base_youtube_url = f"https://www.googleapis.com/youtube/v3/playlistItems?key=" \
-                           f"{self._key}&playlistId={list_id}&part=contentDetails,snippet&maxResults=50"
-        
+                           f"{self._key}&playlistId={list_id}" \
+                           f"&part=contentDetails,snippet&maxResults=50"
+
         has_next_page = True
         next_page_token = ""
 

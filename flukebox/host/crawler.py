@@ -23,7 +23,7 @@ class Crawler:
         self._crawl_host(YouTube(), "youtube")
 
         output_path = join(self._path["data_path"], self._path["song_file"])
-        with open(output_path, "w") as song_file:
+        with open(output_path, "w", encoding="utf-8") as song_file:
             json.dump(self._result, song_file)
 
     def _crawl_host(self, host: AbstractHost, name: str):

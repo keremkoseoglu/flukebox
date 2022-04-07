@@ -1,6 +1,4 @@
 """ Producer module """
-from os import path
-import json
 from typing import List
 from flukebox.config import get_config, get_path, get_crawled_songs
 from flukebox.cpp import purify_song_name
@@ -14,14 +12,17 @@ class Producer:
         self._songs = []
         self._songs_json = {}
 
-    def build_song_list(self, playlist_name: str, no_local: bool = False, purify: bool = False) -> List[Song]:
+    def build_song_list(self, playlist_name: str,
+                        no_local: bool = False,
+                        purify: bool = False
+                       ) -> List[Song]:
         """ Builds song list """
         self._songs = []
         self._songs_json = get_crawled_songs()
 
         if purify:
-            for path in self._songs_json["path_songs"]:
-                for song in path["songs"]:
+            for path_entry in self._songs_json["path_songs"]:
+                for song in path_entry["songs"]:
                     song["name"] = purify_song_name(song["name"])
 
         self._append_playlist_to_songs(playlist_name, no_local=no_local)
@@ -39,11 +40,11 @@ class Producer:
                 return
 
     def _append_path_to_songs(self, path_name: str, no_local: bool = False):
-        for path in self._songs_json["path_songs"]:
-            if path["path"] == path_name:
+        for path_entry in self._songs_json["path_songs"]:
+            if path_entry["path"] == path_name:
                 if no_local and self._is_path_local(path_name):
                     return
-                for song_dict in path["songs"]:
+                for song_dict in path_entry["songs"]:
                     if not self._is_song_appended(song_dict["name"]):
                         if "icon_url" in song_dict:
                             icon = song_dict["icon_url"]
@@ -60,7 +61,7 @@ class Producer:
         return False
 
     def _is_path_local(self, path_name: str) -> bool:
-        for path in self._config["paths"]:
-            if path["name"] == path_name:
-                return path["host"] == "local"
+        for path_entry in self._config["paths"]:
+            if path_entry["name"] == path_name:
+                return path_entry["host"] == "local"
         return False

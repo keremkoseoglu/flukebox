@@ -13,7 +13,8 @@ class Spotify(AbstractHost):
     def __init__(self):
         self._config = get_config()
         self._path = get_path()
-        cache_path = os.path.join(self._path["data_path"], self._config["hosts"]["spotify"]["cache_file"])
+        cache_path = os.path.join(self._path["data_path"],
+                                  self._config["hosts"]["spotify"]["cache_file"])
         self._icon = self._config["hosts"]["spotify"]["icon"]
 
         oauth = SpotifyOAuth(
@@ -37,7 +38,9 @@ class Spotify(AbstractHost):
             for item in spotify_songs["items"]:
                 if len(item["track"]["external_urls"]) <= 0:
                     continue
-                song = Song(item["track"]["name"], item["track"]["external_urls"]["spotify"], self._icon)
+                song = Song(item["track"]["name"],
+                            item["track"]["external_urls"]["spotify"],
+                            self._icon)
                 output.append(song)
             if spotify_songs["next"] is None:
                 return output

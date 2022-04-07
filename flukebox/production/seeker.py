@@ -96,7 +96,7 @@ class ScoreCalculator:
         song_split = self._song_name.split(" ")
         candidate_split = self._candidate_name.split(" ")
         for song_word in song_split:
-            if song_word == "" or song_word == " ":
+            if song_word in("", " "):
                 continue
             if len(song_word) <= 1:
                 continue
@@ -123,7 +123,7 @@ class Seeker:
         prime.start_gui(seeker_playlist=playlist_name, seeker_songs=self._state.output)
 
     def _read_seek_file(self):
-        with open(self._state.file_path) as seek_file:
+        with open(self._state.file_path, encoding="utf-8") as seek_file:
             self._state.seek = json.load(seek_file)
 
     def _init_song_contests(self):

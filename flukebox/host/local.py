@@ -47,29 +47,29 @@ class NewFileDetector():
     def _build_dir_list(self):
         self._dir_list = []
         self._song_dict = {}
-        with open(self._song_file) as song_file:
+        with open(self._song_file, encoding="utf-8") as song_file:
             self._song_dict = json.load(song_file)
         for path in self._song_dict["path_songs"]:
             for song in path["songs"]:
-                dir, file = ntpath.split(song["url"])
-                if not NewFileDetector._is_local_url(dir):
+                dir_entry, _ = ntpath.split(song["url"])
+                if not NewFileDetector._is_local_url(dir_entry):
                     continue
-                if not dir in self._dir_list:
-                    self._dir_list.append(dir)
+                if not dir_entry in self._dir_list:
+                    self._dir_list.append(dir_entry)
 
     @staticmethod
     def _is_local_url(url: str) -> bool:
         return url.lower()[:4] != "http"
 
     def _build_file_list(self):
-        for dir in self._dir_list:
-            for file in listdir(dir):
-                full_path = join(dir, file)
+        for dir_entry in self._dir_list:
+            for file in listdir(dir_entry):
+                full_path = join(dir_entry, file)
                 self._dir_file_list.append(full_path)
 
     def _delta_exists(self):
         for existing_file in self._dir_file_list:
-            filename, extension = splitext(existing_file)
+            _, extension = splitext(existing_file)
             extension = extension.replace(".", "")
             if not extension in self._config["hosts"]["local"]["extensions"]:
                 continue
@@ -90,3 +90,5 @@ class NewFileDetector():
                     continue
                 if not song["url"] in self._dir_file_list:
                     return True
+
+        return False
