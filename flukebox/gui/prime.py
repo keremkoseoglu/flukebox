@@ -5,7 +5,6 @@ from os import path
 from typing import List
 from flask import Flask, jsonify, request
 import webview
-from incubus import IncubusFactory
 from flukebox import config
 from flukebox.production.producer import Producer
 from flukebox.host.crawler import Crawler
@@ -13,7 +12,6 @@ from flukebox.host.crawler import Crawler
 _CONFIG = config.get_config()
 _PATH = config.get_path()
 _CRAWLER = Crawler()
-_INCUBUS = IncubusFactory.get_instance()
 _PRODUCER = Producer()
 _APP = Flask(__name__, static_folder=path.join("web", "static"))
 _PLAYLIST_WINDOW = webview.create_window("FlukeBox", _APP, width=896, height=1120, x=0, y=0)
@@ -43,7 +41,6 @@ def start_playlist():
 @_APP.route("/api/playlists")
 def api_playlists():
     """ Returns all playlists """
-    _INCUBUS.user_event()
     if _SEEKER_PLAYLIST != "":
         seeker_list = [{"name": _SEEKER_PLAYLIST}]
         return jsonify(seeker_list)
@@ -53,7 +50,6 @@ def api_playlists():
 @_APP.route("/api/edit_config")
 def edit_config():
     """ Edit configuration file """
-    _INCUBUS.user_event()
     data_path = path.join(_PATH["data_path"], _PATH["config_file"])
     subprocess.call(["open", data_path])
     return ""
@@ -67,7 +63,6 @@ def crawl():
 @_APP.route("/api/generate")
 def api_generate():
     """ Generates file list of playlist """
-    _INCUBUS.user_event()
     no_local = request.args.get("no_local") == "true"
     if len(_SEEKER_SONGS) > 0:
         songs = _SEEKER_SONGS
@@ -79,7 +74,6 @@ def api_generate():
 @_APP.route("/api/play")
 def api_play():
     """ Plays given URL """
-    _INCUBUS.user_event()
     url = request.args.get("url")
     _PLAYER_WINDOW.load_url(url)
     return ""
@@ -87,7 +81,6 @@ def api_play():
 @_APP.route("/api/stop")
 def api_stop():
     """ Stops player """
-    _INCUBUS.user_event()
     #_PLAYER_WINDOW.load_url("https://this-page-intentionally-left-blank.org/")
     _PLAYER_WINDOW.load_html("")
     return ""
@@ -101,8 +94,6 @@ def start_gui(playlist:str=None,
     global _START_NO_LOCAL
     global _SEEKER_PLAYLIST
     global _SEEKER_SONGS
-
-    _INCUBUS.start(5)
 
     if playlist is not None:
         _START_PLAYLIST = playlist
