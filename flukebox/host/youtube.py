@@ -1,12 +1,12 @@
 """ YouTube module """
 from typing import List
 import requests
-from flukebox.host.abstract_host import AbstractHost
+from flukebox.host.host import Host
 from flukebox.host.path import Path
 from flukebox.host.song import Song
 from flukebox.config import get_config
 
-class YouTube(AbstractHost):
+class YouTube(Host):
     """ YouTube class """
     def __init__(self):
         self._config = get_config()

@@ -4,12 +4,12 @@ from os import listdir
 from os.path import isfile, join, splitext
 import json
 import ntpath
-from flukebox.host.abstract_host import AbstractHost
+from flukebox.host.host import Host
 from flukebox.host.path import Path
 from flukebox.host.song import Song
 from flukebox.config import get_config, get_path
 
-class LocalHost(AbstractHost):
+class LocalHost(Host):
     """ Local host class """
     def get_songs_in_path(self, path: Path) -> List[Song]:
         """ Reads path and returns a list of URL's of songs within """

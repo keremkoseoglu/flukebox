@@ -1,7 +1,7 @@
 """ Host crawler module """
 from os.path import join
 import json
-from flukebox.host.abstract_host import AbstractHost
+from flukebox.host.host import Host
 from flukebox.host.local import LocalHost
 from flukebox.host.spotify import Spotify
 from flukebox.host.youtube import YouTube
@@ -26,7 +26,7 @@ class Crawler:
         with open(output_path, "w", encoding="utf-8") as song_file:
             json.dump(self._result, song_file)
 
-    def _crawl_host(self, host: AbstractHost, name: str):
+    def _crawl_host(self, host: Host, name: str):
         for path_config in self._config["paths"]:
             if path_config["host"] != name:
                 continue
