@@ -3,12 +3,12 @@ from typing import List
 import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-from flukebox.host.abstract_host import AbstractHost
+from flukebox.host.host import Host
 from flukebox.host.path import Path
 from flukebox.host.song import Song
 from flukebox.config import get_config, get_path
 
-class Spotify(AbstractHost):
+class Spotify(Host):
     """ Spotify class """
     def __init__(self):
         self._config = get_config()

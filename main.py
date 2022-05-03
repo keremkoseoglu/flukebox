@@ -30,6 +30,7 @@ def main():
             return
 
     # GUI
+    # Seeker().seek_and_produce("/Users/Kerem/Downloads/flukebox_seek.json")
     start_gui()
 
 if __name__ == "__main__":
