@@ -69,6 +69,8 @@ function loadPlaylist(playlist, no_local) {
     for (var i = 0; i < that.playList.length; i++) {
       that.setArrowVisibility(i, "hidden");
     }
+
+    that.resetPlayer();
   });
 }
 
