@@ -1,6 +1,6 @@
 """ Primary GUI module """
-
 import subprocess
+import os
 from os import path
 from typing import List
 from flask import Flask, jsonify, request
@@ -83,6 +83,12 @@ def api_stop():
     """ Stops player """
     #_PLAYER_WINDOW.load_url("https://this-page-intentionally-left-blank.org/")
     _PLAYER_WINDOW.load_html("")
+    return ""
+
+@_APP.route("/api/quit")
+def api_quit():
+    """ Quits app """
+    os._exit(os.EX_OK)
     return ""
 
 def start_gui(playlist:str=None,
