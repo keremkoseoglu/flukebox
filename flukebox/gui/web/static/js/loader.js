@@ -111,6 +111,14 @@ function appendPlaylist(name) {
   cmbPlay.appendChild(opt);
 }
 
+function quit() {
+  $.ajax({
+    url: "/api/quit"
+  }).then(function(data) {
+    return;
+  });
+}
+
 /* On load */
 
 $(document).ready(function() { 
