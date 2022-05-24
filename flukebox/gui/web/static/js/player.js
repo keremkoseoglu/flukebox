@@ -1,6 +1,6 @@
 var randomPlayList = [];
 var index = -1;
-var playList = []
+var playList = [];
 
 for (i = 0; i < playList.length; i++) {
     setArrowVisibility(i, "hidden");
@@ -14,9 +14,9 @@ function prev () {
 }
 
 function randomSong () {
-    lazyBuildRandomPlaylist()
+    lazyBuildRandomPlaylist();
     randomIndex = Math.floor(Math.random() * randomPlayList.length);
-    songIndex = getSongIndex(randomPlayList[randomIndex].name)
+    songIndex = getSongIndex(randomPlayList[randomIndex].name);
     setSong(songIndex);
 }
 
@@ -87,4 +87,9 @@ function removeRandomSong(songName) {
     }
     if (songIndex < 0) {return;}
     randomPlayList.splice(songIndex, 1)
+}
+
+function resetPlayer() {
+    randomPlayList = [];
+    index = -1;
 }
