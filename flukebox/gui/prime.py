@@ -2,6 +2,7 @@
 import subprocess
 import os
 from os import path
+import threading
 from typing import List
 from flask import Flask, jsonify, request
 import webview
@@ -14,6 +15,7 @@ _PATH = config.get_path()
 _CRAWLER = Crawler()
 _PRODUCER = Producer()
 _APP = Flask(__name__, static_folder=path.join("web", "static"))
+_APP_EXTERNAL = Flask(__name__)
 _PLAYLIST_WINDOW = webview.create_window("FlukeBox", _APP, width=896, height=1120, x=0, y=0)
 _PLAYER_WINDOW = webview.create_window("Player",
                                        html="<body bgcolor=black />",
@@ -91,6 +93,10 @@ def api_quit():
     os._exit(os.EX_OK)
     return ""
 
+@_APP_EXTERNAL.route("/api/quit")
+def api_external_quit():
+    api_quit()
+
 def start_gui(playlist:str=None,
               no_local:bool=None,
               seeker_playlist:str=None,
@@ -112,4 +118,6 @@ def start_gui(playlist:str=None,
         _SEEKER_SONGS = seeker_songs
 
     #_APP.run(host="0.0.0.0", port=5001, debug=True)
+    ext_port = _CONFIG["settings"]["external_api_port"]
+    threading.Thread(target=lambda: _APP_EXTERNAL.run(host="0.0.0.0", port=ext_port)).start()
     webview.start()
