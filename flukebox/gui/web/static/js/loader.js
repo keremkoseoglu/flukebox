@@ -96,6 +96,8 @@ function setButtonsDisabled(disabled) {
   btnCrawl.hidden = disabled;
   btnPlay.disabled = disabled;
   btnPlay.hidden = disabled;
+  btnQuit.disabled = disabled;
+  btnQuit.hidden = disabled;
 }
 
 function clearPlaylists() {
