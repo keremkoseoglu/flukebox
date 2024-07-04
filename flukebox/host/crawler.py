@@ -1,4 +1,5 @@
 """ Host crawler module """
+
 from os.path import join
 import json
 from flukebox.host.host import Host
@@ -8,15 +9,17 @@ from flukebox.host.youtube import YouTube
 from flukebox.host.path import Path
 from flukebox.config import get_config, get_path
 
+
 class Crawler:
-    """ Host crawler class """
+    """Host crawler class"""
+
     def __init__(self):
         self._result = {}
         self._config = get_config()
         self._path = get_path()
 
     def crawl(self):
-        """ Crawls all hosts """
+        """Crawls all hosts"""
         self._result["path_songs"] = []
         self._crawl_host(LocalHost(), "local")
         self._crawl_host(Spotify(), "spotify")
@@ -30,10 +33,18 @@ class Crawler:
         for path_config in self._config["paths"]:
             if path_config["host"] != name:
                 continue
+
             path_output = {"path": path_config["name"], "songs": []}
-            path_obj = Path(path_config["name"], path_config["host"], path_config["url"])
+            path_obj = Path(
+                path_config["name"], path_config["host"], path_config["url"]
+            )
             songs = host.get_songs_in_path(path_obj)
             for song in songs:
-                song_json = {"name": song.name, "url": song.url, "icon_url": song.icon_url}
+                song_json = {
+                    "name": song.name,
+                    "url": song.url,
+                    "icon_url": song.icon_url,
+                }
                 path_output["songs"].append(song_json)
+
             self._result["path_songs"].append(path_output)
