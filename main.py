@@ -1,12 +1,12 @@
 """ Entry point """
-import os
+
 import sys
 from flukebox.gui.prime import start_gui
-from flukebox.production.producer import Producer
 from flukebox.production.seeker import Seeker
-from flukebox import config
+
 
 def main():
+    """Main entry point"""
     # Skippable hosts
     no_local = False
     for arg in sys.argv:
@@ -32,6 +32,7 @@ def main():
     # GUI
     # Seeker().seek_and_produce("/Users/Kerem/Downloads/flukebox_seek.json")
     start_gui()
+
 
 if __name__ == "__main__":
     main()
