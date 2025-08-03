@@ -3,14 +3,14 @@
 function editClick() {
   $.ajax({
     url: "/api/edit_config"
-  }).then(function(data) {});
+  }).then(function (data) { });
 }
 
 function crawlClick() {
   disableButtons();
   $.ajax({
     url: "/api/crawl"
-  }).then(function(data) {
+  }).then(function (data) {
     enableButtons();
   });
 }
@@ -20,7 +20,7 @@ function reloadClick() {
 
   $.ajax({
     url: "/api/playlists"
-  }).then(function(data) {
+  }).then(function (data) {
     for (var i = 0; i < data.length; i++) { appendPlaylist(data[i]["name"]); }
     loadStartPlaylist();
   });
@@ -29,7 +29,7 @@ function reloadClick() {
 function loadStartPlaylist() {
   $.ajax({
     url: "/api/start_playlist"
-  }).then(function(data) {
+  }).then(function (data) {
     if (data["start_playlist"] != "") {
       loadPlaylist(data["start_playlist"], data["no_local"]);
       $("#cmbPlaylist").val(data["start_playlist"]);
@@ -51,7 +51,7 @@ function loadPlaylist(playlist, no_local) {
 
   $.ajax({
     url: api_url
-  }).then(function(data) {
+  }).then(function (data) {
     that.playList = data;
     var songHtml = "";
 
@@ -59,7 +59,7 @@ function loadPlaylist(playlist, no_local) {
       song = that.playList[i]
       songHtml += "<nobr><img src='" + song.icon_url + "'> ";
       songHtml += "<a href='#' onClick='setSongAndPlay(" + i + ")'>";
-      songHtml += song.name;
+      songHtml += "<span class='songName'>" + song.name + "</span>";
       songHtml += "</a> ";
       songHtml += "<span id='arrow_" + i + "'><big> ⭐️</big></span></nobr> &nbsp;&nbsp;";
     }
@@ -116,13 +116,13 @@ function appendPlaylist(name) {
 function quit() {
   $.ajax({
     url: "/api/quit"
-  }).then(function(data) {
+  }).then(function (data) {
     return;
   });
 }
 
 /* On load */
 
-$(document).ready(function() { 
+$(document).ready(function () {
   reloadClick();
 });
