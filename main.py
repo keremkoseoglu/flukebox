@@ -1,8 +1,17 @@
-""" Entry point """
+"""Entry point"""
 
 import sys
+import subprocess
 from flukebox.gui.prime import start_gui
 from flukebox.production.seeker import Seeker
+from flukebox.config import get_config
+
+# autostart
+#   config'de varsa auto start et
+#   √
+#   dokümantasyon varsa ona ekle
+#   tweet planla
+#   push
 
 
 def main():
@@ -28,6 +37,12 @@ def main():
         if arg_split[0] == "seek":
             Seeker().seek_and_produce(arg_split[1])
             return
+
+    # Auto starts
+    config = get_config()
+    if "auto_starts" in config["settings"]:
+        for auto_start in config["settings"]["auto_starts"]:
+            subprocess.run(["open", auto_start], check=False)
 
     # GUI
     # Seeker().seek_and_produce("/Users/Kerem/Downloads/flukebox_seek.json")
