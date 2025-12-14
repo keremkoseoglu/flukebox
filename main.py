@@ -6,13 +6,6 @@ from flukebox.gui.prime import start_gui
 from flukebox.production.seeker import Seeker
 from flukebox.config import get_config
 
-# autostart
-#   config'de varsa auto start et
-#   √
-#   dokümantasyon varsa ona ekle
-#   tweet planla
-#   push
-
 
 def main():
     """Main entry point"""

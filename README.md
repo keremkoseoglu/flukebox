@@ -106,7 +106,13 @@ In the "config" folder, create a file called **config.json** in the following in
         }
     },
     "settings": {
-        "output_file": "/Users/kerem/Downloads/flukebox_player.html"
+        "output_file": "/Users/kerem/Downloads/flukebox_player.html",
+        "unknown_icon": "https://icons.iconarchive.com/icons/martz90/circle-addon2/16/help-icon.png",
+        "external_api_port": 50001,
+        "deleted_song_icon": "⚠️",
+        "auto_starts": [
+            "/Applications/Universal Audio/UAD Console.app"
+        ]
     }
 }
 ```
