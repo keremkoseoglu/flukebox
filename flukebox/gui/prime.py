@@ -1,10 +1,10 @@
-""" Primary GUI module """
+"""Primary GUI module"""
 
 import subprocess
 import os
-from os import path
 import threading
 from typing import List
+import webbrowser
 from flask import Flask, jsonify, request
 import webview
 from flukebox import config
@@ -15,14 +15,19 @@ _CONFIG = config.get_config()
 _PATH = config.get_path()
 _CRAWLER = Crawler()
 _PRODUCER = Producer()
-_APP = Flask(__name__, static_folder=path.join("web", "static"))
+_APP = Flask(__name__, static_folder=os.path.join("web", "static"))
 _APP_EXTERNAL = Flask(__name__)
 _PLAYLIST_WINDOW = webview.create_window(
     "FlukeBox", _APP, width=896, height=1120, x=0, y=0, text_select=True
 )
-_PLAYER_WINDOW = webview.create_window(
-    "Player", html="<body bgcolor=black />", width=896, height=1120, x=896, y=0
-)
+
+if "external_browser" not in _CONFIG["settings"] or ["external_browser"] == "":
+    _PLAYER_WINDOW = webview.create_window(
+        "Player", html="<body bgcolor=black />", width=896, height=1120, x=896, y=0
+    )
+else:
+    _PLAYER_WINDOW = None
+
 _START_PLAYLIST = ""
 _START_NO_LOCAL = False
 _SEEKER_PLAYLIST = ""
@@ -55,7 +60,7 @@ def api_playlists():
 @_APP.route("/api/edit_config")
 def edit_config():
     """Edit configuration file"""
-    data_path = path.join(_PATH["data_path"], _PATH["config_file"])
+    data_path = os.path.join(_PATH["data_path"], _PATH["config_file"])
     subprocess.call(["open", data_path])
     return ""
 
@@ -84,15 +89,24 @@ def api_generate():
 def api_play():
     """Plays given URL"""
     url = request.args.get("url")
-    _PLAYER_WINDOW.load_url(url)
-    return ""
+
+    if _PLAYER_WINDOW is not None:
+        _PLAYER_WINDOW.load_url(url)
+    else:
+        if url.startswith("http"):
+            chrome = webbrowser.get(_CONFIG["settings"]["external_browser"])
+            chrome.open(url, new=0)
+        else:
+            subprocess.call(["open", url])
+        return
 
 
 @_APP.route("/api/stop")
 def api_stop():
     """Stops player"""
     # _PLAYER_WINDOW.load_url("https://this-page-intentionally-left-blank.org/")
-    _PLAYER_WINDOW.load_html("")
+    if _PLAYER_WINDOW is not None:
+        _PLAYER_WINDOW.load_html("")
     return ""
 
 

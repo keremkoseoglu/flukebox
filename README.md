@@ -112,7 +112,8 @@ In the "config" folder, create a file called **config.json** in the following in
         "deleted_song_icon": "⚠️",
         "auto_starts": [
             "/Applications/Universal Audio/UAD Console.app"
-        ]
+        ],
+        "external_browser": "chrome"
     }
 }
 ```
